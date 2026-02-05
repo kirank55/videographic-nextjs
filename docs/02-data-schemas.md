@@ -1,6 +1,6 @@
 # Data Schemas - Understanding the Data Structures
 
-> **Prerequisites**: Read [00-overview.md](./00-overview.md) first.
+> **Prerequisites**: Read [01-project-setup.md](./01-project-setup.md) first.
 >
 > **Key File**: [`src/lib/schemas/timeline.ts`](file:///c:/Users/kiran/code/p/videographic/videographic%20nextjs/src/lib/schemas/timeline.ts)
 
@@ -605,11 +605,43 @@ Look at this JSON and identify each part:
 
 ---
 
+## 🔧 Build Steps
+
+Files to create:
+
+| Step | File | Action |
+|------|------|--------|
+| 1 | `src/lib/schemas/timeline.ts` | Create with all schemas from this doc |
+
+### Create the Schema File
+
+```bash
+# Create the file
+New-Item -ItemType File -Path src/lib/schemas/timeline.ts -Force
+```
+
+Copy all the schema definitions from this doc into the file, then verify with:
+
+```typescript
+// Quick test
+import { VideoProjectSchema } from "./timeline";
+
+const result = VideoProjectSchema.safeParse({
+  id: "test",
+  name: "Test",
+  duration: 5,
+  events: []
+});
+console.log(result.success); // true
+```
+
+---
+
 ## 📚 Next Steps
 
-Now that you understand the data structures, learn how users authenticate:
+Now that you understand the data structures, set up the database:
 
-→ **[01-auth.md](./01-auth.md)** - Authentication System
+→ **[03-database.md](./03-database.md)** - Database & Prisma ORM
 
 ---
 

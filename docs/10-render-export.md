@@ -419,11 +419,39 @@ for (const event of project.events) {
 
 ---
 
+## 🔧 Build Steps
+
+Files to create:
+
+| Step | File | Action |
+|------|------|--------|
+| 1 | `src/lib/core/VideoExporter.ts` | Export engine class |
+| 2 | `src/components/editor/ExportModal.tsx` | Export UI modal |
+
+### Step 1: Create VideoExporter
+
+Create `src/lib/core/VideoExporter.ts` with:
+- `isSupported()` static method
+- `export()` method using MediaRecorder
+- `exportAndDownload()` method for browser download
+- Codec selection logic
+- Frame-by-frame render loop
+
+### Step 2: Create ExportModal
+
+Create `src/components/editor/ExportModal.tsx` with:
+- Quality presets (Standard, High, Ultra)
+- Trim controls
+- Progress visualization
+- Export/download buttons
+
+---
+
 ## 📚 Next Steps
 
 Learn how AI generates video content:
 
-→ **[07-ai-generation.md](./07-ai-generation.md)** - AI Generation System
+→ **[11-ai-generation.md](./11-ai-generation.md)** - AI Generation System
 
 ---
 

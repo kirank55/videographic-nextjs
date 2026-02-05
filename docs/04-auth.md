@@ -1,6 +1,6 @@
 # Authentication System
 
-> **Prerequisites**: Read [00-overview.md](./00-overview.md) first.
+> **Prerequisites**: Read [03-database.md](./03-database.md) first.
 >
 > **Key Files**:
 > - [`src/lib/auth.ts`](file:///c:/Users/kiran/code/p/videographic/videographic%20nextjs/src/lib/auth.ts) - NextAuth configuration
@@ -437,11 +437,51 @@ console.log("Session:", JSON.stringify(session, null, 2));
 
 ---
 
+## 🔧 Build Steps
+
+Files to create:
+
+| Step | File | Action |
+|------|------|--------|
+| 1 | `src/lib/auth.ts` | NextAuth configuration |
+| 2 | `src/middleware.ts` | Route protection |
+| 3 | `src/app/api/auth/[...nextauth]/route.ts` | Auth API handlers |
+| 4 | `src/components/auth/login-form.tsx` | Login UI |
+| 5 | `src/components/auth/user-button.tsx` | User menu |
+| 6 | `src/components/providers/session-provider.tsx` | Client session context |
+
+### Step 1: Create Auth Configuration
+
+Create `src/lib/auth.ts` with NextAuth config from this doc.
+
+### Step 2: Create Middleware
+
+Create `src/middleware.ts` with route protection logic.
+
+### Step 3: Create API Route
+
+Create `src/app/api/auth/[...nextauth]/route.ts`:
+
+```typescript
+import { handlers } from "@/lib/auth";
+export const { GET, POST } = handlers;
+```
+
+### Step 4: Create Auth Components
+
+Create login form and user button components from this doc.
+
+### Step 5: Verify Auth
+
+Start the dev server and navigate to `/login` to test Google sign-in.
+
+---
+
 ## 📚 Next Steps
 
-Now that you understand authentication, learn how data is stored:
+Now that authentication is set up, implement state management:
 
-→ **[11-database.md](./11-database.md)** - Database & Prisma ORM
+→ **[05-state-management.md](./05-state-management.md)** - Zustand State Management
 
 ---
 

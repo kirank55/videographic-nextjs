@@ -1,6 +1,6 @@
 # API Routes
 
-> **Prerequisites**: Read [07-ai-generation.md](./07-ai-generation.md) first.
+> **Prerequisites**: Read [11-ai-generation.md](./11-ai-generation.md) first.
 >
 > **Key Directory**: [`src/app/api/`](file:///c:/Users/kiran/code/p/videographic/videographic%20nextjs/src/app/api)
 
@@ -385,6 +385,24 @@ Status codes:
 
 ---
 
+## 🔧 Build Steps
+
+API route files to create:
+
+| Step | File | Action |
+|------|------|--------|
+| 1 | `src/app/api/auth/[...nextauth]/route.ts` | NextAuth handlers (created in auth doc) |
+| 2 | `src/app/api/projects/route.ts` | List/create projects |
+| 3 | `src/app/api/projects/[id]/route.ts` | Get/update/delete project |
+| 4 | `src/app/api/projects/[id]/duplicate/route.ts` | Duplicate project |
+| 5 | `src/app/api/generate/route.ts` | AI generation endpoint |
+
+### Create Routes
+
+For each route, implement the HTTP methods documented in this file with proper authentication checks.
+
+---
+
 ## 📚 Conclusion
 
 You've completed the Videographic documentation! 🎉
@@ -392,18 +410,19 @@ You've completed the Videographic documentation! 🎉
 ### Learning Path Summary
 
 1. **[00-overview.md](./00-overview.md)** - Project introduction
-2. **[01-auth.md](./01-auth.md)** - Authentication with NextAuth
+2. **[01-project-setup.md](./01-project-setup.md)** - Initial project setup
 3. **[02-data-schemas.md](./02-data-schemas.md)** - Zod schemas
-4. **[03-state-management.md](./03-state-management.md)** - Zustand store
-5. **[04-fabric-canvas.md](./04-fabric-canvas.md)** - Canvas rendering
-6. **[05-animation-engine.md](./05-animation-engine.md)** - Animations
-7. **[08-timeline-component.md](./08-timeline-component.md)** - Timeline UI
-8. **[09-editor-architecture.md](./09-editor-architecture.md)** - Editor layout
-9. **[06-render-export.md](./06-render-export.md)** - Video export
-10. **[07-ai-generation.md](./07-ai-generation.md)** - AI generation
-11. **[10-api-routes.md](./10-api-routes.md)** - API reference (this file)
-12. **[11-database.md](./11-database.md)** - Database layer
+4. **[03-database.md](./03-database.md)** - Database & Prisma
+5. **[04-auth.md](./04-auth.md)** - Authentication
+6. **[05-state-management.md](./05-state-management.md)** - Zustand store
+7. **[06-fabric-canvas.md](./06-fabric-canvas.md)** - Canvas rendering
+8. **[07-animation-engine.md](./07-animation-engine.md)** - Animations
+9. **[08-timeline-component.md](./08-timeline-component.md)** - Timeline UI
+10. **[09-editor-architecture.md](./09-editor-architecture.md)** - Editor layout
+11. **[10-render-export.md](./10-render-export.md)** - Video export
+12. **[11-ai-generation.md](./11-ai-generation.md)** - AI generation
+13. **[12-api-routes.md](./12-api-routes.md)** - API reference (this file)
 
 ---
 
-*This documentation should give you a complete understanding of how Videographic works. Happy coding!*
+*This documentation should give you a complete understanding of how Videographic works and enable you to rebuild the app from scratch. Happy coding!*

@@ -420,11 +420,41 @@ sequenceDiagram
 
 ---
 
+## 🔧 Build Steps
+
+Files to create:
+
+| Step | File | Action |
+|------|------|--------|
+| 1 | `src/components/editor/EditorClient.tsx` | Main editor container |
+| 2 | `src/components/editor/AddElementToolbar.tsx` | Add shapes/text toolbar |
+| 3 | `src/components/editor/PropertyPanel.tsx` | Properties panel |
+| 4 | `src/app/(dashboard)/editor/[id]/page.tsx` | Editor page route |
+
+### Step 1: Create EditorClient
+
+Create `src/components/editor/EditorClient.tsx` with:
+- Layout with three-column grid
+- Panel toggles and resize handles
+- Project loading and auto-save
+- Keyboard shortcuts
+- Preview mode
+
+### Step 2: Create Supporting Components
+
+Create the toolbar and property panel components.
+
+### Step 3: Create Editor Page
+
+Create the dynamic route that loads the project and renders EditorClient.
+
+---
+
 ## 📚 Next Steps
 
 Now understand the video export system:
 
-→ **[06-render-export.md](./06-render-export.md)** - Video Export Pipeline
+→ **[10-render-export.md](./10-render-export.md)** - Video Export Pipeline
 
 ---
 

@@ -1,6 +1,6 @@
 # Database & Prisma ORM
 
-> **Prerequisites**: Read [01-auth.md](./01-auth.md) first.
+> **Prerequisites**: Read [02-data-schemas.md](./02-data-schemas.md) first.
 >
 > **Key Files**:
 > - [`prisma/schema.prisma`](file:///c:/Users/kiran/code/p/videographic/videographic%20nextjs/prisma/schema.prisma) - Database schema
@@ -507,11 +507,50 @@ Opens a web GUI at `http://localhost:5555` to browse/edit data.
 
 ---
 
+## 🔧 Build Steps
+
+Files to create:
+
+| Step | File | Action |
+|------|------|--------|
+| 1 | `prisma/schema.prisma` | Add User, Account, Session, Project models |
+| 2 | `src/lib/db.ts` | Create Prisma client singleton |
+| 3 | `src/lib/data/projects.ts` | Create data access functions |
+
+### Step 1: Update Prisma Schema
+
+Edit `prisma/schema.prisma` with the User, Account, Session, and Project models from this doc.
+
+### Step 2: Push Schema to Database
+
+```bash
+npx prisma db push
+npx prisma generate
+```
+
+### Step 3: Create Prisma Client
+
+Create `src/lib/db.ts` with the singleton pattern from this doc.
+
+### Step 4: Create Data Access Layer
+
+Create `src/lib/data/projects.ts` with CRUD functions for projects.
+
+### Step 5: Verify Setup
+
+```bash
+npx prisma studio
+```
+
+Open [http://localhost:5555](http://localhost:5555) to browse your database.
+
+---
+
 ## 📚 Next Steps
 
-Now that you understand data persistence, learn about client-side state:
+Now that the database is set up, add authentication:
 
-→ **[03-state-management.md](./03-state-management.md)** - Zustand State Management
+→ **[04-auth.md](./04-auth.md)** - Authentication System
 
 ---
 

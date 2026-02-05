@@ -1,6 +1,6 @@
 # Animation Engine
 
-> **Prerequisites**: Read [04-fabric-canvas.md](./04-fabric-canvas.md) first.
+> **Prerequisites**: Read [06-fabric-canvas.md](./06-fabric-canvas.md) first.
 >
 > **Key Files**:
 > - [`src/components/editor/hooks/useCanvas.ts`](file:///c:/Users/kiran/code/p/videographic/videographic%20nextjs/src/components/editor/hooks/useCanvas.ts) - Animation interpolation
@@ -442,6 +442,20 @@ const state = localTime < animStart
 - **Exit**: `easeIn` (slow start, fast departure)
 - **Loops**: `linear` (constant speed)
 - **Bounce**: `bounce` (playful emphasis)
+
+---
+
+## 🔧 Build Steps
+
+The animation system is integrated into `useCanvas.ts`. Key additions:
+
+| Component | File | Action |
+|-----------|------|--------|
+| Easing functions | `useCanvas.ts` | Add easing function object |
+| Interpolation | `useCanvas.ts` | Add `interpolateAnimation()` function |
+| Property computation | `useCanvas.ts` | Add `computeAnimatedProperties()` function |
+
+Copy the interpolation and easing code from this doc into your `useCanvas.ts` hook.
 
 ---
 

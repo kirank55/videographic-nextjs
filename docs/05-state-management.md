@@ -1,6 +1,6 @@
 # State Management with Zustand
 
-> **Prerequisites**: Read [11-database.md](./11-database.md) first.
+> **Prerequisites**: Read [04-auth.md](./04-auth.md) first.
 >
 > **Key File**: [`src/stores/editor-store.ts`](file:///c:/Users/kiran/code/p/videographic/videographic%20nextjs/src/stores/editor-store.ts)
 
@@ -471,11 +471,41 @@ window.__ZUSTAND_STORE__ = useEditorStore;
 
 ---
 
+## 🔧 Build Steps
+
+Files to create:
+
+| Step | File | Action |
+|------|------|--------|
+| 1 | `src/stores/editor-store.ts` | Create the Zustand store |
+
+### Create the Editor Store
+
+Create `src/stores/editor-store.ts` with:
+
+1. State interface (project, currentTime, isPlaying, selectedIds, canvas, history)
+2. Actions for project, playback, selection, event mutations, history
+3. History management with undo/redo
+
+Use the code examples from this doc as your guide.
+
+### Verify Store
+
+```typescript
+// Quick test in a component
+import { useEditorStore } from "@/stores/editor-store";
+
+const project = useEditorStore((state) => state.project);
+console.log(project); // null initially
+```
+
+---
+
 ## 📚 Next Steps
 
 Now that you understand state management, learn how the canvas renders:
 
-→ **[04-fabric-canvas.md](./04-fabric-canvas.md)** - Canvas Rendering with Fabric.js
+→ **[06-fabric-canvas.md](./06-fabric-canvas.md)** - Canvas Rendering with Fabric.js
 
 ---
 

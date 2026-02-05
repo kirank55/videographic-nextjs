@@ -93,22 +93,23 @@ src/
 
 ## 🛤️ Recommended Learning Path
 
-Read the documentation in this order for the best learning experience:
+Read the documentation in this order to rebuild the app step-by-step:
 
 | # | File | What You'll Learn |
 |---|------|-------------------|
-| 1 | **[00-overview.md](./00-overview.md)** | You are here! Big picture understanding |
+| 0 | **[00-overview.md](./00-overview.md)** | You are here! Big picture understanding |
+| 1 | **[01-project-setup.md](./01-project-setup.md)** | Next.js setup, dependencies, folder structure |
 | 2 | **[02-data-schemas.md](./02-data-schemas.md)** | Core data structures (VideoProject, TimelineEvent) |
-| 3 | **[01-auth.md](./01-auth.md)** | How users log in with Google OAuth |
-| 4 | **[11-database.md](./11-database.md)** | How projects are stored (PostgreSQL + Prisma) |
-| 5 | **[03-state-management.md](./03-state-management.md)** | How state flows with Zustand |
-| 6 | **[04-fabric-canvas.md](./04-fabric-canvas.md)** | Canvas rendering with Fabric.js |
-| 7 | **[05-animation-engine.md](./05-animation-engine.md)** | GSAP animations and transitions |
+| 3 | **[03-database.md](./03-database.md)** | PostgreSQL + Prisma ORM setup |
+| 4 | **[04-auth.md](./04-auth.md)** | Google OAuth with NextAuth.js |
+| 5 | **[05-state-management.md](./05-state-management.md)** | Zustand store for editor state |
+| 6 | **[06-fabric-canvas.md](./06-fabric-canvas.md)** | Canvas rendering with Fabric.js |
+| 7 | **[07-animation-engine.md](./07-animation-engine.md)** | Animation interpolation and easing |
 | 8 | **[08-timeline-component.md](./08-timeline-component.md)** | Timeline UI component |
-| 9 | **[09-editor-architecture.md](./09-editor-architecture.md)** | Full editor structure |
-| 10 | **[06-render-export.md](./06-render-export.md)** | Video export pipeline |
-| 11 | **[07-ai-generation.md](./07-ai-generation.md)** | AI prompt-to-video system |
-| 12 | **[10-api-routes.md](./10-api-routes.md)** | REST API reference |
+| 9 | **[09-editor-architecture.md](./09-editor-architecture.md)** | Full editor structure and layout |
+| 10 | **[10-render-export.md](./10-render-export.md)** | Video export pipeline |
+| 11 | **[11-ai-generation.md](./11-ai-generation.md)** | AI prompt-to-video system |
+| 12 | **[12-api-routes.md](./12-api-routes.md)** | REST API reference |
 
 ---
 
@@ -181,8 +182,8 @@ Start with these files to understand the core:
 
 ## 📚 Next Steps
 
-Ready to dive deeper? Start with **[02-data-schemas.md](./02-data-schemas.md)** to understand the data structures that power everything.
+Ready to dive in? Start with **[01-project-setup.md](./01-project-setup.md)** to set up your development environment.
 
 ---
 
-*This documentation was created to help beginners understand the Videographic project.*
+*This documentation was created to help you understand and rebuild the Videographic project step-by-step.*

@@ -1,6 +1,6 @@
 # Canvas Rendering with Fabric.js
 
-> **Prerequisites**: Read [03-state-management.md](./03-state-management.md) first.
+> **Prerequisites**: Read [05-state-management.md](./05-state-management.md) first.
 >
 > **Key Files**:
 > - [`src/components/editor/Canvas.tsx`](file:///c:/Users/kiran/code/p/videographic/videographic%20nextjs/src/components/editor/Canvas.tsx) - Canvas component
@@ -523,11 +523,39 @@ export class FabricRenderer {
 
 ---
 
+## 🔧 Build Steps
+
+Files to create:
+
+| Step | File | Action |
+|------|------|--------|
+| 1 | `src/components/editor/Canvas.tsx` | Canvas component wrapper |
+| 2 | `src/components/editor/hooks/useCanvas.ts` | Canvas logic hook |
+| 3 | `src/lib/core/FabricRenderer.ts` | Export renderer |
+
+### Step 1: Create Canvas Component
+
+Create `src/components/editor/Canvas.tsx` - a wrapper that holds the canvas ref and uses the hook.
+
+### Step 2: Create useCanvas Hook
+
+Create `src/components/editor/hooks/useCanvas.ts` with:
+- Canvas initialization
+- Event handlers (selection, modification)
+- Resize observer
+- Event rendering logic with animation interpolation
+
+### Step 3: Create FabricRenderer
+
+Create `src/lib/core/FabricRenderer.ts` for off-screen export rendering.
+
+---
+
 ## 📚 Next Steps
 
 Now that you understand canvas rendering, learn about animations:
 
-→ **[05-animation-engine.md](./05-animation-engine.md)** - Animation Engine
+→ **[07-animation-engine.md](./07-animation-engine.md)** - Animation Engine
 
 ---
 

@@ -1,6 +1,6 @@
 # Timeline Component
 
-> **Prerequisites**: Read [05-animation-engine.md](./05-animation-engine.md) first.
+> **Prerequisites**: Read [07-animation-engine.md](./07-animation-engine.md) first.
 >
 > **Key File**: [`src/components/editor/Timeline.tsx`](file:///c:/Users/kiran/code/p/videographic/videographic%20nextjs/src/components/editor/Timeline.tsx)
 
@@ -504,6 +504,28 @@ onContextMenu={(e) => {
 const TRACK_HEIGHT = 28;  // Height of each layer row in pixels
 const BASE_PIXELS_PER_SECOND = 100;  // At zoom 1x
 ```
+
+---
+
+## 🔧 Build Steps
+
+Files to create:
+
+| Step | File | Action |
+|------|------|--------|
+| 1 | `src/components/editor/Timeline.tsx` | Timeline component |
+
+### Create Timeline Component
+
+Create `src/components/editor/Timeline.tsx` with:
+- Controls bar (play/pause, time display, zoom)
+- Ruler with time markers
+- Track items for each event
+- Playhead rendering and dragging
+- Event drag-to-move and resize handlers
+- Audio track visualization
+
+Use the code patterns from this doc as reference.
 
 ---
 

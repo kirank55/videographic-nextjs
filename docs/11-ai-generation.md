@@ -1,6 +1,6 @@
 # AI Generation System
 
-> **Prerequisites**: Read [06-render-export.md](./06-render-export.md) first.
+> **Prerequisites**: Read [10-render-export.md](./10-render-export.md) first.
 >
 > **Key Files**:
 > - [`src/lib/ai/prompts.ts`](file:///c:/Users/kiran/code/p/videographic/videographic%20nextjs/src/lib/ai/prompts.ts) - System prompt and validation
@@ -399,11 +399,47 @@ When generation fails:
 
 ---
 
+## 🔧 Build Steps
+
+Files to create:
+
+| Step | File | Action |
+|------|------|--------|
+| 1 | `src/lib/ai/prompts.ts` | System prompt and validation |
+| 2 | `src/lib/ai/openrouter.ts` | OpenRouter API client |
+| 3 | `src/components/editor/AIGenerateModal.tsx` | Generation UI modal |
+
+### Step 1: Create System Prompt
+
+Create `src/lib/ai/prompts.ts` with:
+- `SYSTEM_PROMPT` constant with video structure guidelines
+- `buildUserPrompt()` function
+- `validateGeneratedProject()` function
+- `attemptJSONRecovery()` function
+
+### Step 2: Create API Client
+
+Create `src/lib/ai/openrouter.ts` with:
+- `generateWithOpenRouter()` async function
+- Streaming response handling
+- Model constants
+
+### Step 3: Create Generation Modal
+
+Create `src/components/editor/AIGenerateModal.tsx` with:
+- Prompt input
+- Duration selector
+- API key management
+- Generation progress
+- Append vs replace mode
+
+---
+
 ## 📚 Next Steps
 
 Learn about the API routes that power the application:
 
-→ **[10-api-routes.md](./10-api-routes.md)** - API Routes
+→ **[12-api-routes.md](./12-api-routes.md)** - API Routes
 
 ---
 
