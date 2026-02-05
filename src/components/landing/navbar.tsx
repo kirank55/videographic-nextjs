@@ -33,15 +33,15 @@ export function Navbar({ isLoggedIn }: NavbarProps) {
                 </Link>
 
                 <div className="hidden md:flex items-center gap-8">
-                    <Link href="#features" className="text-gray-300 hover:text-white transition-colors">
+                    {/* <Link href="#features" className="text-gray-300 hover:text-white transition-colors">
                         Features
-                    </Link>
+                    </Link> */}
                     <Link href="#how-it-works" className="text-gray-300 hover:text-white transition-colors">
                         How it Works
                     </Link>
-                    <Link href="#pricing" className="text-gray-300 hover:text-white transition-colors">
+                    {/* <Link href="#pricing" className="text-gray-300 hover:text-white transition-colors">
                         Pricing
-                    </Link>
+                    </Link> */}
                 </div>
 
                 <div className="flex items-center gap-4">

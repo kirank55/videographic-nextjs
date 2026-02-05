@@ -19,17 +19,6 @@ export function Hero({ isLoggedIn }: HeroProps) {
 
             {/* Content */}
             <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
-                >
-                    <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 text-sm text-gray-300 mb-8">
-                        <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-                        Now with AI-powered generation
-                    </span>
-                </motion.div>
-
                 <motion.h1
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -38,7 +27,7 @@ export function Hero({ isLoggedIn }: HeroProps) {
                 >
                     Create Stunning Videos
                     <br />
-                    <span className="gradient-text">From Text</span>
+                    <span>From Text</span>
                 </motion.h1>
 
                 <motion.p
@@ -64,34 +53,15 @@ export function Hero({ isLoggedIn }: HeroProps) {
                         Start Creating Free
                         <span className="group-hover:translate-x-1 transition-transform">→</span>
                     </Link>
-                    <Link
+                    {/* <Link
                         href="#how-it-works"
                         className="px-8 py-4 glass text-white font-semibold rounded-2xl hover:bg-white/10 transition-colors"
                     >
                         Watch Demo
-                    </Link>
+                    </Link> */}
                 </motion.div>
 
-                {/* Stats */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.4 }}
-                    className="flex items-center justify-center gap-12 mt-16 pt-16 border-t border-white/10"
-                >
-                    <div className="text-center">
-                        <div className="text-3xl font-bold text-white">10K+</div>
-                        <div className="text-gray-400">Videos Created</div>
-                    </div>
-                    <div className="text-center">
-                        <div className="text-3xl font-bold text-white">5K+</div>
-                        <div className="text-gray-400">Happy Users</div>
-                    </div>
-                    <div className="text-center">
-                        <div className="text-3xl font-bold text-white">4.9/5</div>
-                        <div className="text-gray-400">User Rating</div>
-                    </div>
-                </motion.div>
+
             </div>
 
             {/* Scroll indicator */}

@@ -16,9 +16,9 @@ export default async function Home() {
     <div className="min-h-screen bg-background text-foreground">
       <Navbar isLoggedIn={!!session?.user} />
       <Hero isLoggedIn={!!session?.user} />
-      <Features />
+      {/* <Features /> */}
       <HowItWorks />
-      <Testimonials />
+      {/* <Testimonials /> */}
       <CTA isLoggedIn={!!session?.user} />
       <Footer />
     </div>

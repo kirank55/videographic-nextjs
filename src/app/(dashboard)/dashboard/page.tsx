@@ -44,12 +44,12 @@ export default async function DashboardPage() {
                 </div>
 
                 {/* Samples Section */}
-                <div className="mb-12">
+                {/* <div className="mb-12">
                     <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
                         <span>✨</span> Start with a Template
                     </h3>
                     <SampleProjectList />
-                </div>
+                </div> */}
 
                 <div className="mb-6 flex items-center justify-between">
                     <h3 className="text-lg font-semibold text-white">Your Projects</h3>
@@ -57,7 +57,7 @@ export default async function DashboardPage() {
 
                 <ProjectGrid projects={projects} />
 
-                <div className="mt-12 pt-8 border-t border-white/5">
+                {/* <div className="mt-12 pt-8 border-t border-white/5">
                     <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-4">Quick Stats</h3>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                         <div className="bg-white/5 rounded-xl p-4">
@@ -69,7 +69,7 @@ export default async function DashboardPage() {
                             <p className="text-xs text-gray-400">Videos Rendered</p>
                         </div>
                     </div>
-                </div>
+                </div> */}
             </main>
         </div>
     );
