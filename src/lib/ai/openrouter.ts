@@ -24,37 +24,117 @@ interface OpenRouterResponse {
   };
 }
 
+function attemptJSONRecovery(truncatedJson: string): string {
+  // Count unclosed brackets and braces to try to repair truncated JSON
+  let openBraces = 0;
+  let openBrackets = 0;
+  let quoteCount = 0;
+  let inString = false;
+  
+  for (let i = 0; i < truncatedJson.length; i++) {
+    const char = truncatedJson[i];
+    
+    if (char === '"') {
+      // Check if this is an escaped quote
+      if (i > 0 && truncatedJson[i - 1] === '\\') {
+        continue;
+      }
+      inString = !inString;
+      quoteCount++;
+    }
+    
+    if (!inString) {
+      if (char === '{') openBraces++;
+      if (char === '}') openBraces--;
+      if (char === '[') openBrackets++;
+      if (char === ']') openBrackets--;
+    }
+  }
+  
+  // Try to repair the JSON by adding closing brackets/braces
+  let repaired = truncatedJson;
+  
+  // Handle trailing comma issues
+  repaired = repaired.trim();
+  if (repaired.endsWith(',')) {
+    repaired = repaired.slice(0, -1);
+  }
+  
+  // Handle cases where we're still in a string
+  if (inString || quoteCount % 2 !== 0) {
+    // Find the last unescaped quote to see if we were in a string
+    const lastUnescapedQuote = findLastUnescapedQuote(truncatedJson);
+    if (lastUnescapedQuote !== -1) {
+      // Cut off at the last unescaped quote and try to close the structure
+      const partial = truncatedJson.substring(0, lastUnescapedQuote + 1);
+      // Count brackets/braces in the partial string
+      let tempBraces = 0, tempBrackets = 0;
+      for (let i = 0; i < partial.length; i++) {
+        const char = partial[i];
+        if (char === '"') {
+          if (i > 0 && partial[i - 1] === '\\') continue;
+          inString = !inString;
+        }
+        if (!inString) {
+          if (char === '{') tempBraces++;
+          if (char === '}') tempBraces--;
+          if (char === '[') tempBrackets++;
+          if (char === ']') tempBrackets--;
+        }
+      }
+      repaired = partial;
+      // Check for trailing comma in the repaired partial
+      if (repaired.trim().endsWith(',')) {
+        repaired = repaired.slice(0, -1);
+      }
+      openBraces = tempBraces;
+      openBrackets = tempBrackets;
+    }
+  }
+  
+  while (openBrackets > 0) {
+    repaired += ']';
+    openBrackets--;
+  }
+  
+  while (openBraces > 0) {
+    repaired += '}';
+    openBraces--;
+  }
+  
+  return repaired;
+}
+
+function findLastUnescapedQuote(str: string): number {
+  let lastQuote = -1;
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] === '"' && (i === 0 || str[i - 1] !== '\\')) {
+      lastQuote = i;
+    }
+  }
+  return lastQuote;
+}
+
 function parseJSONWithWorker(jsonText: string): Promise<any> {
   return new Promise((resolve, reject) => {
     try {
-      // Try direct parsing for small responses (fallback for Node.js)
-      if (typeof Worker === 'undefined' || jsonText.length < 10000) {
-        return resolve(JSON.parse(jsonText));
-      }
-
-      const worker = new Worker(new URL('@/workers/json-parser.worker', import.meta.url));
+      // First, try direct parsing
+      const result = JSON.parse(jsonText);
+      return resolve(result);
+    } catch (parseError) {
+      console.error(`[OpenRouter] Initial parse failed, attempting recovery:`, parseError);
+      console.error(`[OpenRouter] Original JSON snippet:`, jsonText.substring(0, 200));
       
-      worker.postMessage(jsonText);
-      
-      worker.onmessage = (e) => {
-        worker.terminate();
-        if (e.data.success) {
-          resolve(e.data.data);
-        } else {
-          reject(new Error(e.data.error));
-        }
-      };
-      
-      worker.onerror = (error) => {
-        worker.terminate();
-        reject(error);
-      };
-    } catch (error) {
-      // Fallback to direct parsing if worker fails
+      // Try to recover from truncated JSON
       try {
-        resolve(JSON.parse(jsonText));
-      } catch (parseError) {
-        reject(parseError);
+        const repaired = attemptJSONRecovery(jsonText);
+        console.error(`[OpenRouter] Attempting to parse repaired JSON:`, repaired.substring(0, 200));
+        const result = JSON.parse(repaired);
+        console.warn(`[OpenRouter] Successfully parsed repaired JSON`);
+        return resolve(result);
+      } catch (recoveryError) {
+        console.error(`[OpenRouter] Recovery failed:`, recoveryError);
+        reject(recoveryError);
       }
     }
   });
@@ -164,13 +244,15 @@ export async function generateWithOpenRouter(
     // Extract JSON from response (handle various markdown formats)
     let jsonText = text.trim();
     
+    console.log(`[OpenRouter] Raw response snippet (first 100 chars):`, jsonText.substring(0, 100));
+    
     // Remove markdown code blocks: ```json...``` or ```...```
     if (jsonText.startsWith('```')) {
       const lines = jsonText.split('\n');
       // Remove first line (```json or ```)
       lines.shift();
       // Remove last line if it's ```
-      if (lines[lines.length - 1].trim() === '```') {
+      if (lines[lines.length - 1] && lines[lines.length - 1].trim() === '```') {
         lines.pop();
       }
       jsonText = lines.join('\n').trim();
@@ -183,10 +265,19 @@ export async function generateWithOpenRouter(
         jsonText = jsonMatch[1].trim();
       }
     }
+    
+    // Extract JSON between first { and last }
+    const startIdx = jsonText.indexOf('{');
+    const endIdx = jsonText.lastIndexOf('}');
+    if (startIdx !== -1 && endIdx !== -1 && endIdx > startIdx) {
+      jsonText = jsonText.substring(startIdx, endIdx + 1).trim();
+    }
 
      try {
-      // Use web worker for parsing large responses
+      // Use robust parsing with recovery
       const parsed = await parseJSONWithWorker(jsonText);
+      console.log(`[OpenRouter] Parsed JSON successfully`);
+      
       const project = validateGeneratedProject(parsed);
 
       if (!project) {
@@ -207,7 +298,8 @@ export async function generateWithOpenRouter(
     } catch (parseError) {
       console.error(`[OpenRouter] JSON parse error:`, parseError);
       console.error(`[OpenRouter] Attempted to parse:`, jsonText);
-      console.error(`[OpenRouter] Full raw response:`, text);
+      console.error(`[OpenRouter] Full raw response length:`, text.length);
+      console.error(`[OpenRouter] Raw response snippet (last 200 chars):`, text.substring(text.length - 200));
       return {
         success: false,
         error: "Failed to parse AI response as JSON",

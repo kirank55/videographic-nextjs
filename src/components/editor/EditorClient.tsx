@@ -419,7 +419,7 @@ export function EditorClient({ project: dbProject }: EditorClientProps) {
                     </div>
 
                     {/* Undo/Redo buttons */}
-                    <div className="flex items-center gap-1 mr-2 border-r border-white/10 pr-3">
+                    {/* <div className="flex items-center gap-1 mr-2 border-r border-white/10 pr-3">
                         <button
                             onClick={undo}
                             disabled={!canUndo()}
@@ -436,7 +436,7 @@ export function EditorClient({ project: dbProject }: EditorClientProps) {
                         >
                             redo
                         </button>
-                    </div>
+                    </div> */}
                     <button
                         onClick={saveProject}
                         disabled={isSaving}
