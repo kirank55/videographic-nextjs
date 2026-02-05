@@ -173,7 +173,7 @@ export function AddElementToolbar({ onAIClick }: AddElementToolbarProps) {
 
                                 <div className="h-px bg-white/10 my-2" />
 
-                                <div className="px-2 py-1.5 text-[10px] font-semibold text-gray-500 uppercase tracking-wider">
+                                {/* <div className="px-2 py-1.5 text-[10px] font-semibold text-gray-500 uppercase tracking-wider">
                                     Media & Background
                                 </div>
                                 {elements.slice(4).map((element) => (
@@ -188,10 +188,10 @@ export function AddElementToolbar({ onAIClick }: AddElementToolbarProps) {
                                             <div className="text-[10px] text-gray-500">{element.description}</div>
                                         </div>
                                     </button>
-                                ))}
+                                ))} */}
 
                                 {/* AI Magic Section */}
-                                {onAIClick && (
+                                {/* {onAIClick && (
                                     <>
                                         <div className="h-px bg-white/10 my-2" />
                                         <div className="px-2 py-1.5 text-[10px] font-semibold text-gray-500 uppercase tracking-wider">
@@ -211,7 +211,7 @@ export function AddElementToolbar({ onAIClick }: AddElementToolbarProps) {
                                             </div>
                                         </button>
                                     </>
-                                )}
+                                )} */}
                             </div>
                         </div>
                     </>

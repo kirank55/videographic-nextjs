@@ -42,6 +42,9 @@ export function ExportModal({ isOpen, onClose, saveProject }: ExportModalProps) 
     const [progress, setProgress] = useState<ExportProgress | null>(null);
     const [error, setError] = useState<string | null>(null);
 
+    // Check if browser is Firefox
+    const isFirefox = typeof navigator !== "undefined" && navigator.userAgent.toLowerCase().includes("firefox");
+
     // Quality preset
     const [quality, setQuality] = useState<QualityPreset>("high");
 
@@ -213,6 +216,11 @@ export function ExportModal({ isOpen, onClose, saveProject }: ExportModalProps) 
                     </div>
                 ) : (
                     <div className="space-y-4">
+                        {isFirefox && (
+                            <div className="p-4 bg-amber-500/10 border border-amber-500/30 rounded-lg text-amber-400 text-sm">
+                                ⚠️ For best export quality, we recommend using Chrome or Edge browsers. Firefox may produce lower quality exports due to limited WebCodecs support.
+                            </div>
+                        )}
                         <p className="text-gray-400 text-sm">
                             Export your video as a high-quality MP4 file using H.264 encoding.
                         </p>
